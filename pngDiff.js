@@ -37,7 +37,10 @@ class PNGDiff {
       pngInstance.fillRect(rect.xmin, rect.ymin, (rect.xmax-rect.xmin), (rect.ymax-rect.ymin), pngInstance.colors.red(50))
     }
     
-    return PNG.sync.write(pngInstance);
+    return {
+      image: PNG.sync.write(pngInstance),
+      hasChanges: bounds.length > 0,
+    }
   }
 
   static prepareMatrix({mainWidth, mainHeight, boxWidth, boxHeight}) {
